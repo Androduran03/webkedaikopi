@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kopi Kenangan Senja</title>
+    <!-- font css -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+
+
+    <!-- alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="src/app.js"></script>
+</head>
+<body>
+    <!-- navbar star -->
+    <nav class="navbar">
+        <a href="#" class="navbar-logo">Kenangan<span>Senja</span></a>
+        <div class="navbar-nav">
+            <a href="#">Home</a>
+            <a href="#about">Tentang Kami</a>
+            <a href="#menu">Menu</a>
+            <a href="#products">Produk</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <div class="navbar-extra" x-data>
+            <a href="#"id="search"><i data-feather="search"></i></a>
+            <a href="#"id="shopping-cart-button">
+                
+                <i data-feather="shopping-cart"></i>
+            <span class="quantity-badge"x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
+            </a>
+            <a href="#"id="hamburger-menu"><i data-feather="menu"></i></a>
+        </div>
+        <div class="search-form">
+            <input type="search"id="search-box" placeholder="search here...">
+            <label for="search-box"><i data-feather="search"></i></label>
+        </div>
+        <div class="shopping-cart" x-data>
+            <template x-for="(item, index) in $store.cart.items" x-keys="index">
+                <div class="cart-item">
+                    <img :src="`img/products/${item.img}`" :alt="item.name">
+                    <div class="item-detail">
+                        <h3 x-text="item.name"></h3>
+                        <div class="item-price">
+                            <span x-text="rupiah(item.price)"></span> &times;
+                            <button id = "remove" @click="$store.cart.remove(item.id)">&minus; </button>
+                            <span x-text="item.quantity"></span>
+                            <button id="add" @click="$store.cart.add(item)">&plus;</button>&equals;
+                            <span x-text="rupiah(item.total)"></span>
+                        </div>
+                    </div>
+                </div>
+            </template>
+            <h4 x-show="!$store.cart.items.length" style="margin-top: 1rem;">Cart is' empty</h4>
+            <h4 x-show="$store.cart.items.length">Total : <span x-text=" rupiah($store.cart.total)"></span></h4>
+            <div class="form-container" x-show="$store.cart.items.length">
+                <form action="" id="checkoutForm">
+                    <h5>Customer Detail</h5>
+
+                    <label for="name">
+                        <span>Name</span>
+                        <input type="text" name="name" id="name">
+                    </label>
+                    <label for="email">
+                        <span>email</span>
+                        <input type="email" name="email" id="email">
+                    </label>
+                    <label for="phone">
+                        <span>Phone</span>
+                        <input type="number" name="phone" id="phone" autocomplete="off">
+                    </label>
+                    <button class="checkout-button"type="submit"id="checkout-button">Checkout</button>
+
+                </form>
+            </div>
+           
+            
+        </div>
+    </nav>
+    <!-- navbar end -->
+<section class="hero" id="home">
+    <main class="content">
+        <h1>Mari Nikmati Secangkir <span>Kopi</span> </h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae commodi quos beatae, accusamus aspernatur 
+</p>
+    </main>
+
+</section>
+
+<!-- start section tentang kami-->
+
+<section class="about" id="about">
+    <h2><span>Tentang </span>Kami</h2>
+    <div class="row">
+        <div class="about-img">
+            <img src="img/about.jpg" alt="tentang kami">
+        </div>
+        <div class="content">
+            <h3>Kenapa Memilih Kopi Kami?</h3>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae animi eius porro ullam non autem iure placeat! Minima earum repudiandae aliquid ab neque tempore repellat, sint rerum id ratione esse.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Suscipit eveniet, quas tenetur iusto adipisci numquam! Qui veniam eaque mollitia sapiente labore consectetur ea velit esse.</p>
+        </div>
+    </div>
+</section>
+<!-- end section tentang kami-->
+
+<!-- section start menu kami -->
+<section class="menu" id="menu">
+    <h2><span>Menu</span> Kami</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel ab dolorem rerum neque labore ipsa.
+    </p>
+    <div class="row">
+        <div class="menu-card">
+            <img src="img/menu.jpg" alt="espresso" class="menu-card-img">
+            <h3 class="menu-card-title">-Espresso-</h3>
+            <p class="menu-card-price">IDR 40000</p>
+        </div>
+        <div class="menu-card">
+            <img src="img/menu.jpg" alt="espresso" class="menu-card-img">
+            <h3 class="menu-card-title">-Espresso-</h3>
+            <p class="menu-card-price">IDR 40000</p>
+        </div>
+        <div class="menu-card">
+            <img src="img/menu.jpg" alt="espresso" class="menu-card-img">
+            <h3 class="menu-card-title">-Espresso-</h3>
+            <p class="menu-card-price">IDR 40000</p>
+        </div>
+        <div class="menu-card">
+            <img src="img/menu.jpg" alt="espresso" class="menu-card-img">
+            <h3 class="menu-card-title">-Espresso-</h3>
+            <p class="menu-card-price">IDR 40000</p>
+        </div>
+        <div class="menu-card">
+            <img src="img/menu.jpg" alt="espresso" class="menu-card-img">
+            <h3 class="menu-card-title">-Espresso-</h3>
+            <p class="menu-card-price">IDR 40000</p>
+        </div>
+        <div class="menu-card">
+            <img src="img/menu.jpg" alt="espresso" class="menu-card-img">
+            <h3 class="menu-card-title">-Espresso-</h3>
+            <p class="menu-card-price">IDR 40000</p>
+        </div>
+    </div>
+</section>
+<!-- section end menu kami -->
+<!-- section  start produk kami -->
+<section id="products" class="products" x-data="products">
+    <h2> <span>Produk Ungulan</span> Kami</h2>
+<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Praesentium, accusamus.</p>
+<div class="row">
+    <template x-for="(item, index) in items" x-key="index">
+    <div class="products-card">
+        <div class="products-icons">
+            <a href="#" @click.prevent="$store.cart.add(item)">
+                <i class="bi bi-cart" style="font-size: 1.5rem;"></i>
+            </a>
+            <a href="#" class="item-detail-button">
+                <i class="bi bi-eye" style="font-size: 1.5rem;"></i>
+            </a>
+        </div>
+        <div class="product-image">
+            <img :src="`img/products/${item.img}`" :alt="item.name">
+        </div>
+        <div class="product-content">
+            <h3 x-text="item.name"></h3>
+            <div class="product-starts">
+                <i data-feather="star"></i>
+                <i data-feather="star"></i>
+                <i data-feather="star"></i>
+                <i data-feather="star"></i>
+                <i data-feather="star"></i>
+            </div>
+            <div class="products-price">
+                <span x-text="rupiah(item.price)"></span>
+            </div>
+        </div>
+    </div>
+</template>
+</div>
+</section>
+<!-- section end produk kami -->
+<!-- section start contact -->
+<section class="contact" id="contact">
+    <h2><span>Kontak </span> Kami</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nam cum itaque, numquam facilis quas.</p>
+    <div class="row">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126646.20960984658!2d112.63028091630844!3d-7.2756120061048!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fbf8381ac47f%3A0x3027a76e352be40!2sSurabaya%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1699622297023!5m2!1sid!2sid"allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
+        <form action="">
+            <div class="group">
+                <i data-feather="user"></i>
+                <input type="text" class="user">
+            </div>
+            <div class="group">
+                <i data-feather="mail"></i>
+                <input type="email" class="email">
+            </div>
+            <div class="group">
+                <i data-feather="phone"></i>
+                <input type="email" class="email">
+            </div>
+            <button class="button">Kirim Pesan</button>
+        </form>
+    </div>
+
+</section>
+<!-- section end contact -->
+<footer>
+    <div class="socials">
+        <a href="#"><i data-feather="facebook"></i></a>
+        <a href="#"><i data-feather="instagram"></i></a>
+        <a href="#"><i data-feather="twitter"></i></a>
+    </div>
+    <div class="links">
+        <a href="#">Home</a>
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="credit">
+        <p>Created at <a href="#">Andro Duran</a>. &copy; 2023</p>
+    </div>
+</footer>
+<div class="modal" id="item-detail-modal">
+    <div class="modal-container">
+        <a href="#"class="close-icon"><i data-feather="x"></i></a>
+        <div class="modal-content">
+            <img src="img/products/1.jpg" alt="products 1">
+            <div class="product-content">
+             <h3>Produk 1</h3>   
+             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat molestias blanditiis asperiores maiores sequi quam distinctio sit accusantium accusamus! Quis numquam aspernatur placeat a nihil?</p>
+             <div class="product-content">
+                <h3>Coffe Beans 1</h3>
+                <div class="product-starts">
+                    <i data-feather="star"></i>
+                    <i data-feather="star"></i>
+                    <i data-feather="star"></i>
+                    <i data-feather="star"></i>
+                    <i data-feather="star"></i>
+                </div>
+                <div class="products-price">
+                    IDR 30K <span>IDR 55K</span> </div>
+                    <a href="#"><i data-feather="shopping-cart"></i><span>add to cart</span></a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        feather.replace();
+      </script>
+      <script src="js/script.js"></script>
+</body>
+</html>
